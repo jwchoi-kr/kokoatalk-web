@@ -41,7 +41,7 @@ const SignUp = () => {
         placeholder="Password Confirm"
         value={passwordConfirm}
         onChange={(e) => setPasswordConfirm(e.target.value)}
-        className="mb-2 border-t-gray-200 rounded-t-none"
+        className="border-t-gray-200 rounded-t-none"
         maxLength={32}
       />
       <Button
@@ -54,7 +54,7 @@ const SignUp = () => {
           passwordConfirm === '' ||
           password !== passwordConfirm
         }
-        className="mb-28"
+        className="mt-2 mb-28"
       />
       <ExtraButton
         text="Sign In"
