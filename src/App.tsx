@@ -1,18 +1,12 @@
-import { useState } from 'react';
 import './styles.css';
+import { Outlet } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="bg-amber-200">
-      <h1>Hello Vite + React!</h1>
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is: {count}
-      </button>
-      <p>
-        Edit <code>App.tsx</code> and save to test HMR updates.
-      </p>
+    <div className="flex items-center justify-center w-screen h-screen bg-gray-100">
+      <div className="w-[32rem] h-screen bg-white border border-gray-300 rounded-2xl shadow-lg overflow-hidden">
+        <Outlet />
+      </div>
     </div>
   );
 }
