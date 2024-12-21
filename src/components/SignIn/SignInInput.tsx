@@ -30,7 +30,7 @@ const SignInInput = ({
         onChange={onChange}
         className={`w-80 h-[3.5rem] px-6 rounded text-lg bg-gray-50 border border-gray-300 focus:outline-none ${type === 'password' ? 'pr-14' : ''} ${className} `}
       />
-      {type === 'password' && (
+      {type === 'password' && value !== '' && (
         <button
           type="button"
           onClick={() => setShowPassword((prev) => !prev)}
