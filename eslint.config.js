@@ -30,6 +30,14 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          args: 'after-used',
+          ignoreRestSiblings: true,
+        },
+      ],
       'prettier/prettier': 'error', // Prettier 규칙을 ESLint 에러로 표시
     },
   }
