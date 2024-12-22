@@ -1,13 +1,16 @@
-import './styles.css';
+import './styles/styles.css';
 import { Outlet } from 'react-router-dom';
+import { AuthProvider } from './contexts/authContext.tsx';
 
 function App() {
   return (
-    <div className="flex items-center justify-center w-screen h-screen bg-gray-100">
-      <div className="w-[32rem] h-screen bg-white border border-gray-300 rounded-2xl shadow-lg overflow-hidden">
-        <Outlet />
+    <AuthProvider>
+      <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
+        <div className="h-screen w-[32rem] overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-lg">
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 

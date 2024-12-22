@@ -17,11 +17,11 @@ const RememberMeCheckbox = ({
         id="rememberMe"
         checked={isChecked}
         onChange={onChange}
-        className="w-[1.25rem] h-[1.2rem] mr-3 rounded-full border border-gray-500 bg-white appearance-none checked:before:content-['✓'] checked:before:text-sm checked:before:font-aptos checked:before:flex checked:before:justify-center checked:before:items-center hover:bg-gray-50"
+        className="mr-3 h-[1.2rem] w-[1.25rem] appearance-none rounded-full border border-gray-500 bg-white hover:bg-gray-50"
       />
       <label
         htmlFor="rememberMe"
-        className="text-sm font-light text-gray-600 select-none"
+        className="select-none text-sm font-light text-gray-600"
       >
         Keep me logged in
       </label>
