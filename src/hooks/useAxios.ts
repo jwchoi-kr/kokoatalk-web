@@ -6,11 +6,20 @@ export const useAxios = () => {
   const { accessToken } = useAuth();
 
   useEffect(() => {
-    if (accessToken) {
-      axiosInstance.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
-    } else {
-      delete axiosInstance.defaults.headers['Authorization'];
-    }
+    const requestInterceptor = axiosInstance.interceptors.request.use(
+      (config) => {
+        if (accessToken) {
+          config.headers['Authorization'] = `Bearer ${accessToken}`;
+        } else {
+          delete config.headers['Authorization'];
+        }
+        return config;
+      }
+    );
+
+    return () => {
+      axiosInstance.interceptors.request.eject(requestInterceptor);
+    };
   }, [accessToken]);
 
   return axiosInstance;

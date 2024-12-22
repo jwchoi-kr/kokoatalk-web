@@ -8,7 +8,7 @@ interface SignUpRequest {
 
 const signUp = async ({ loginId, password, nickname }: SignUpRequest) => {
   try {
-    const response = await axiosInstance.post('/api/auth/signup', {
+    await axiosInstance.post('/api/auth/signup', {
       loginId: loginId,
       password: password,
       nickname: nickname,
