@@ -32,7 +32,7 @@ const SignIn = () => {
       <Button
         onClick={() => {}}
         label="Log in"
-        disabled={id === '' || password === ''}
+        disabled={id === '' || password.length < 4}
         className="mb-4 mt-2"
       />
       <RememberMeCheckbox

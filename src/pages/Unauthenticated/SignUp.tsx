@@ -50,8 +50,8 @@ const SignUp = () => {
         disabled={
           nickname === '' ||
           id === '' ||
-          password === '' ||
-          passwordConfirm === '' ||
+          password.length < 4 ||
+          passwordConfirm.length < 4 ||
           password !== passwordConfirm
         }
         className="mb-28 mt-2"
