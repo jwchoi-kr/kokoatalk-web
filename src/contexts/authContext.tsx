@@ -12,12 +12,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const signIn = () => setIsAuthenticated(true);
+  const isAuthenticated = !!accessToken;
+
+  const signIn = () => {
+    setAccessToken(accessToken);
+  };
+
   const signOut = () => {
     setAccessToken(null);
-    setIsAuthenticated(false);
   };
 
   return (
