@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 interface LoginButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void;
+  onClick?: () => void;
   label: string;
   disabled: boolean;
   className?: string;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SignInInput from '../../components/SignIn/SignInInput.tsx';
 import Button from '../../components/SignIn/SignInButton.tsx';
 import ExtraButton from '../../components/SignIn/ExtraButton.tsx';
+import { signUp } from '../../apis/auth.ts';
 
 const SignUp = () => {
   const [nickname, setNickname] = useState('');
@@ -9,9 +10,16 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
+  const handleSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === passwordConfirm) {
+      signUp({ loginId: id, password: password, nickname: nickname });
+    }
+  };
+
   return (
     <form
-      onSubmit={() => {}}
+      onSubmit={handleSignUp}
       className="flex flex-col items-center justify-center"
     >
       <SignInInput
@@ -45,7 +53,6 @@ const SignUp = () => {
         maxLength={32}
       />
       <Button
-        onClick={() => {}}
         label="Sign Up"
         disabled={
           nickname === '' ||

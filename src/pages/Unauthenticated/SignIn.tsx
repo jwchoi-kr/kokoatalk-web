@@ -42,7 +42,7 @@ const SignIn = () => {
       />
       <ExtraButton
         text="Sign Up"
-        link="/signUp"
+        link="/auth/signUp"
       />
     </form>
   );

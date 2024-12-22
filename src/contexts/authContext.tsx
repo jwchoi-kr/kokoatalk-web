@@ -1,25 +1,29 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AuthContextType {
+  accessToken: string | null;
+  setAccessToken: (accessToken: string) => void;
   isAuthenticated: boolean;
   signIn: () => void;
   signOut: () => void;
 }
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const signIn = () => setIsAuthenticated(true);
-  const signOut = () => setIsAuthenticated(false);
+  const signOut = () => {
+    setAccessToken(null);
+    setIsAuthenticated(false);
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ accessToken, setAccessToken, isAuthenticated, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -27,7 +31,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
