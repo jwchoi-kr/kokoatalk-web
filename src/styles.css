@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Aptos';
+  src: url('/src/assets/fonts/Aptos.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 체크박스 커스텀 */
+input[type='checkbox']:checked::before {
+  content: '✓';
+  font-family: 'Aptos', sans-serif !important; /* 우선순위 강제 */
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 18px;
+}

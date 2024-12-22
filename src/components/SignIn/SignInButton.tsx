@@ -10,10 +10,10 @@ interface LoginButtonProps
 
 const Button = ({ onClick, label, disabled, className }: LoginButtonProps) => {
   const buttonStyle = classNames(
-    'w-80 h-[3.5rem] rounded text-lg border border-gray-300',
+    'w-80 h-[3.5rem] rounded text-lg border',
     {
-      ' bg-gray-100 text-[#BDC2C9] font-light': disabled,
-      ' bg-kakao-brown text-gray-50': !disabled,
+      ' bg-gray-100 text-[#BDC2C9] font-light border-gray-300': disabled,
+      ' bg-kakao-brown text-gray-50 border-black': !disabled,
       ' active:bg-[#614A4A]': !disabled,
     },
     className
