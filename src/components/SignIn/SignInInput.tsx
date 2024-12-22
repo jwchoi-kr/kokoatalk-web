@@ -28,18 +28,18 @@ const SignInInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`w-80 h-[3.5rem] px-6 rounded text-lg bg-gray-50 border border-gray-300 focus:outline-none ${type === 'password' ? 'pr-14' : ''} ${className} `}
+        className={`h-[3.5rem] w-80 rounded border border-gray-300 bg-gray-50 px-6 text-lg focus:outline-none ${type === 'password' ? 'pr-14' : ''} ${className} `}
       />
       {type === 'password' && value !== '' && (
         <button
           type="button"
           onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 hover:brightness-70"
+          className="absolute right-4 top-1/2 -translate-y-1/2 transform hover:brightness-70"
         >
           <img
             src={showPassword ? hidePasswordIcon : showPasswordIcon}
             alt="show password"
-            className="w-6 h-6 "
+            className="h-6 w-6"
           />
         </button>
       )}
