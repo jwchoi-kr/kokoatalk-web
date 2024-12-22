@@ -3,11 +3,11 @@ import { Outlet } from 'react-router-dom';
 
 const UnauthenticatedLayout = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-kakao-yellow h-screen">
+    <div className="flex h-screen flex-col items-center justify-center bg-kakao-yellow">
       <img
         src={kakaotalkLogo}
         alt="logo"
-        className="w-40 h-auto mb-8"
+        className="mb-8 h-auto w-40"
       />
       <Outlet />
     </div>

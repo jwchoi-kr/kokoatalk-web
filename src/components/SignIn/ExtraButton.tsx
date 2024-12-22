@@ -11,7 +11,7 @@ const ExtraButton = ({ text, link }: ExtraButtonProps) => {
   return (
     <p
       onClick={() => navigate(link)}
-      className="text-sm font-light text-gray-600 select-none hover:cursor-pointer"
+      className="select-none text-sm font-light text-gray-600 hover:cursor-pointer"
     >
       {text}
     </p>

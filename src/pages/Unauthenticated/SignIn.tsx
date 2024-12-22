@@ -19,26 +19,26 @@ const SignIn = () => {
         placeholder="Email or Phone Number"
         value={id}
         onChange={(e) => setId(e.target.value)}
-        className="border-b-0 rounded-b-none"
+        className="rounded-b-none border-b-0"
       />
       <SignInInput
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="border-t-gray-200 rounded-t-none"
+        className="rounded-t-none border-t-gray-200"
         maxLength={32}
       />
       <Button
         onClick={() => {}}
         label="Log in"
         disabled={id === '' || password === ''}
-        className="mt-2 mb-4"
+        className="mb-4 mt-2"
       />
       <RememberMeCheckbox
         isChecked={isRememberMe}
         onChange={(e) => setIsRememberMe(e.target.checked)}
-        className="self-start mb-28"
+        className="mb-28 self-start"
       />
       <ExtraButton
         text="Sign Up"
