@@ -13,7 +13,7 @@ const SignUp = () => {
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === passwordConfirm) {
-      signUp({ loginId: id, password: password, nickname: nickname });
+      signUp({ accountId: id, password: password, nickname: nickname });
     }
   };
 
