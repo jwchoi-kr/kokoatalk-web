@@ -2,7 +2,7 @@ import './styles/styles.css';
 import { Outlet } from 'react-router-dom';
 import { AuthProvider } from './contexts/authContext.tsx';
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
@@ -12,6 +12,6 @@ function App() {
       </div>
     </AuthProvider>
   );
-}
+};
 
 export default App;

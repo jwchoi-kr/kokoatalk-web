@@ -20,14 +20,19 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const AuthInterceptor = ({ children }: { children: ReactNode }) => {
+  useAxiosInterceptor();
+  return <>{children}</>;
+};
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const isAuthenticated = !!accessToken;
 
-  const setAuth = (accessToken: string, user: User) => {
-    setAccessToken(accessToken);
-    setUser(user);
+  const setAuth = (newToken: string, newUser: User) => {
+    setAccessToken(newToken);
+    setUser(newUser);
   };
 
   const clearAuth = () => {
@@ -43,8 +48,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [accessToken]);
 
-  useAxiosInterceptor();
-
   return (
     <AuthContext.Provider
       value={{
@@ -56,15 +59,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         clearAuth,
       }}
     >
-      {children}
+      <AuthInterceptor>{children}</AuthInterceptor>
     </AuthContext.Provider>
   );
 };
 
-export function useAuth(): AuthContextType {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-}
+};
