@@ -3,7 +3,7 @@ import axiosInstance from '../apis/axiosInstance';
 import { useAuth } from '../contexts/authContext.tsx';
 import { refreshAccessToken } from '../apis/auth.ts';
 
-export function useAxiosInterceptor() {
+export const useAxiosInterceptor = () => {
   const { accessToken, setAccessToken, clearAuth } = useAuth();
 
   useEffect(() => {
@@ -33,4 +33,4 @@ export function useAxiosInterceptor() {
       axiosInstance.interceptors.response.eject(resInterceptor);
     };
   }, [accessToken, setAccessToken, clearAuth]);
-}
+};
