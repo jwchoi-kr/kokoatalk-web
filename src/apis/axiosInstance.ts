@@ -8,10 +8,4 @@ const axiosInstance = axios.create({
   },
 });
 
-// 응답 인터셉터
-axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject(error)
-);
-
 export default axiosInstance;
