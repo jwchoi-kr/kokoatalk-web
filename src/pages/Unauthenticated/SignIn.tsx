@@ -1,17 +1,35 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/SignIn/SignInButton.tsx';
 import SignInInput from '../../components/SignIn/SignInInput.tsx';
 import RememberMeCheckbox from '../../components/SignIn/RememberMeCheckbox.tsx';
 import ExtraButton from '../../components/SignIn/ExtraButton.tsx';
+import { signIn } from '../../apis/auth.ts';
+import { useAuth } from '../../contexts/authContext.tsx';
 
 const SignIn = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [isRememberMe, setIsRememberMe] = useState(false);
 
+  const { setAuth } = useAuth();
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const response = await signIn({
+      accountId: id,
+      password: password,
+      rememberMe: isRememberMe,
+    });
+
+    if (response) {
+      setAuth(response.accessToken, response.user);
+    }
+  };
+
   return (
     <form
-      onSubmit={() => {}}
+      onSubmit={handleSignIn}
       className="flex flex-col items-center justify-center"
     >
       <SignInInput
@@ -30,7 +48,6 @@ const SignIn = () => {
         maxLength={32}
       />
       <Button
-        onClick={() => {}}
         label="Log in"
         disabled={id === '' || password.length < 4}
         className="mb-4 mt-2"
