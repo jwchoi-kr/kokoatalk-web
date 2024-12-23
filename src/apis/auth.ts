@@ -1,15 +1,32 @@
 import axiosInstance from './axiosInstance';
+import { User } from '../pages/Unauthenticated/types.ts';
 
 interface SignUpRequest {
-  loginId: string;
+  accountId: string;
   password: string;
   nickname: string;
 }
 
-const signUp = async ({ loginId, password, nickname }: SignUpRequest) => {
+interface SignInRequest {
+  accountId: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+interface SignInResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: User;
+}
+
+interface RefreshTokenResponse {
+  accessToken: string;
+}
+
+const signUp = async ({ accountId, password, nickname }: SignUpRequest) => {
   try {
     await axiosInstance.post('/api/auth/signup', {
-      loginId: loginId,
+      accountId: accountId,
       password: password,
       nickname: nickname,
     });
@@ -18,4 +35,44 @@ const signUp = async ({ loginId, password, nickname }: SignUpRequest) => {
   }
 };
 
-export { signUp };
+const signIn = async ({
+  accountId,
+  password,
+  rememberMe,
+}: SignInRequest): Promise<SignInResponse> => {
+  try {
+    const response = await axiosInstance.post('/api/auth/signin', {
+      accountId: accountId,
+      password: password,
+      rememberMe: rememberMe,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error during sign in:', error);
+    throw error;
+  }
+};
+
+const refreshAccessToken = async (): Promise<RefreshTokenResponse> => {
+  try {
+    const response = await axiosInstance.post(
+      '/api/auth/refresh',
+      {},
+      { withCredentials: true }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error during token refresh:', error);
+    throw error;
+  }
+};
+
+const signOut = async () => {
+  try {
+    await axiosInstance.post('/api/auth/signout');
+  } catch (error) {
+    console.error('Error during sign out:', error);
+  }
+};
+
+export { signUp, signIn, refreshAccessToken, signOut };
