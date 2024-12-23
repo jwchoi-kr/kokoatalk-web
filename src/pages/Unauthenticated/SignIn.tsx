@@ -5,8 +5,11 @@ import RememberMeCheckbox from '../../components/SignIn/RememberMeCheckbox.tsx';
 import ExtraButton from '../../components/SignIn/ExtraButton.tsx';
 import { signIn } from '../../apis/auth.ts';
 import { useAuth } from '../../contexts/authContext.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [isRememberMe, setIsRememberMe] = useState(false);
@@ -24,6 +27,7 @@ const SignIn = () => {
 
     if (response) {
       setAuth(response.accessToken, response.user);
+      navigate('/');
     }
   };
 
